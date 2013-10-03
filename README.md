@@ -3,6 +3,12 @@ structural
 
 An unencumbered, generic haxe data structures library.
 
+#Current Structures
+
+- Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
+- Unbalanced Binary Search Tree ([read more](http://algs4.cs.princeton.edu/32bst/))
+- Stack ([read more](http://algs4.cs.princeton.edu/13stacks/))
+
 ##Goals
 
 - Single Structures without dependency on entire library
