@@ -7,7 +7,7 @@ An unencumbered, generic haxe data structures library.
 
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
 
-
+```
 	function compare( item1:Int, item2:Int ) {
 		if(item1 == item2) return 0;
 		if(item1 < item2) return -1;
@@ -16,13 +16,15 @@ An unencumbered, generic haxe data structures library.
 	
 	var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
 	tree.insert( 3, new SomeValue() );
-	
+
 	for(some_value_instance in tree) {
 		//use instance
 	}
+```
 
 - Unbalanced Binary Search Tree ([read more](http://algs4.cs.princeton.edu/32bst/))
 
+```
 	function compare( item1:Int, item2:Int ) {
 		if(item1 == item2) return 0;
 		if(item1 < item2) return -1;
@@ -35,9 +37,11 @@ An unencumbered, generic haxe data structures library.
 	for(some_value_instance in tree) {
 		//use instance
 	}
+```
 
 - Stack ([read more](http://algs4.cs.princeton.edu/13stacks/))
 
+```
 	var stack = new Stack<String>();
 		stack.push( 'item1' );
 		stack.push( 'item2' );
@@ -46,6 +50,7 @@ An unencumbered, generic haxe data structures library.
 	for(item in stack) {
 		trace('string is : ' + item );
 	}
+```
 
 ##Goals
 
