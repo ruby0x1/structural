@@ -3,6 +3,16 @@ structural
 
 An unencumbered, generic haxe data structures library.
 
+
+##Goals
+
+- Single Structures without dependency on entire library
+- Wide coverage of data structures 
+- Largely based on algorithms derived from http://algs4.cs.princeton.edu/home/
+
+Usage/tests/more classes to come.
+
+
 #Current Structures
 
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
@@ -51,14 +61,6 @@ An unencumbered, generic haxe data structures library.
 		trace('string is : ' + item );
 	}
 ```
-
-##Goals
-
-- Single Structures without dependency on entire library
-- Wide coverage of data structures 
-- Largely based on algorithms derived from http://algs4.cs.princeton.edu/home/
-
-Usage/tests/more classes to come.
 
 
 MIT License (see LICENSE file for more)
