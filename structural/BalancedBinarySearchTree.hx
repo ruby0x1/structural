@@ -3,6 +3,8 @@ package structural;
 //This class is part of the haxe Structural library, 
 //https://github.com/underscorediscovery/structural
 
+// See http://algs4.cs.princeton.edu/home/
+
 
 class BalancedBinarySearchTree<K,T> {
 

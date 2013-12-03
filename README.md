@@ -7,17 +7,21 @@ An unencumbered, generic haxe data structures library.
 ##Goals
 
 - Single Structures without dependency on entire library
-- Wide coverage of data structures 
-- Largely based on algorithms derived from http://algs4.cs.princeton.edu/home/
+- Wide coverage of generic data structures 
+- Largely based on algorithms from http://algs4.cs.princeton.edu/home/
 
-Usage/tests/more classes to come.
-
+More tests and classes to come.
 
 #Current Structures
 
+- Bag
+- Stack
+- BinarySearchTree 
+- BalancedBinarySearchTree (Red/Black)
+
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
 
-```
+```haxe
 	function compare( item1:Int, item2:Int ) {
 		if(item1 == item2) return 0;
 		if(item1 < item2) return -1;
@@ -34,7 +38,7 @@ Usage/tests/more classes to come.
 
 - Unbalanced Binary Search Tree ([read more](http://algs4.cs.princeton.edu/32bst/))
 
-```
+```haxe
 	function compare( item1:Int, item2:Int ) {
 		if(item1 == item2) return 0;
 		if(item1 < item2) return -1;
@@ -51,13 +55,26 @@ Usage/tests/more classes to come.
 
 - Stack ([read more](http://algs4.cs.princeton.edu/13stacks/))
 
-```
+```haxe
 	var stack = new Stack<String>();
 		stack.push( 'item1' );
 		stack.push( 'item2' );
 		stack.push( 'item3' );
 
 	for(item in stack) {
+		trace('string is : ' + item );
+	}
+```
+
+- Bag ([read more](http://algs4.cs.princeton.edu/13stacks/))
+
+```haxe
+	var bag = new Bag<String>();
+		bag.add( 'item1' );
+		bag.add( 'item2' );
+		bag.add( 'item3' );
+
+	for(item in bag) {
 		trace('string is : ' + item );
 	}
 ```

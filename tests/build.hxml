@@ -1,0 +1,25 @@
+-main StackTest
+-neko bin/StackTest.n
+-lib mohxa
+-cp ../
+
+--next
+
+-main BagTest
+-neko bin/BagTest.n
+-lib mohxa
+-cp ../
+
+--next
+
+-main BinarySearchTreeTest
+-neko bin/BinarySearchTreeTest.n
+-lib mohxa
+-cp ../
+
+--next
+
+-main BalancedBinarySearchTreeTest
+-neko bin/BalancedBinarySearchTreeTest.n
+-lib mohxa
+-cp ../
