@@ -22,18 +22,20 @@ More tests and classes to come.
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
 
 ```haxe
-	{
+	class Example {
 		function compare( item1:Int, item2:Int ) {
 			if(item1 == item2) return 0;
 			if(item1 < item2) return -1;
 			return 1;
 		}
 		
-		var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
-		tree.insert( 3, new SomeValue() );
+		function explain() {
+			var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
+			tree.insert( 3, new SomeValue() );
 
-		for(some_value_instance in tree) {
-			//use instance
+			for(some_value_instance in tree) {
+				//use instance
+			}
 		}
 	}
 ```
@@ -41,43 +43,56 @@ More tests and classes to come.
 - Unbalanced Binary Search Tree ([read more](http://algs4.cs.princeton.edu/32bst/))
 
 ```haxe
-	function compare( item1:Int, item2:Int ) {
-		if(item1 == item2) return 0;
-		if(item1 < item2) return -1;
-		return 1;
-	}
-	
-	var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
-	tree.insert( 3, new SomeValue() );
+	class Example {
 
-	for(some_value_instance in tree) {
-		//use instance
+		function compare( item1:Int, item2:Int ) {
+			if(item1 == item2) return 0;
+			if(item1 < item2) return -1;
+			return 1;
+		}
+		
+		function explain() {
+			var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
+			tree.insert( 3, new SomeValue() );
+
+			for(some_value_instance in tree) {
+				//use instance
+			}
+		}
 	}
 ```
 
 - Stack ([read more](http://algs4.cs.princeton.edu/13stacks/))
 
 ```haxe
-	var stack = new Stack<String>();
-		stack.push( 'item1' );
-		stack.push( 'item2' );
-		stack.push( 'item3' );
+	class Example {
+		function explain() {
+			var stack = new Stack<String>();
+				stack.push( 'item1' );
+				stack.push( 'item2' );
+				stack.push( 'item3' );
 
-	for(item in stack) {
-		trace('string is : ' + item );
+			for(item in stack) {
+				trace('string is : ' + item );
+			}
+		}
 	}
 ```
 
 - Bag ([read more](http://algs4.cs.princeton.edu/13stacks/))
 
 ```haxe
-	var bag = new Bag<String>();
-		bag.add( 'item1' );
-		bag.add( 'item2' );
-		bag.add( 'item3' );
+	class Example {
+		function example() {
+			var bag = new Bag<String>();
+				bag.add( 'item1' );
+				bag.add( 'item2' );
+				bag.add( 'item3' );
 
-	for(item in bag) {
-		trace('string is : ' + item );
+			for(item in bag) {
+				trace('string is : ' + item );
+			}
+		}
 	}
 ```
 
