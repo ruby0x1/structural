@@ -22,17 +22,19 @@ More tests and classes to come.
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
 
 ```haxe
-	function compare( item1:Int, item2:Int ) {
-		if(item1 == item2) return 0;
-		if(item1 < item2) return -1;
-		return 1;
-	}
-	
-	var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
-	tree.insert( 3, new SomeValue() );
+	{
+		function compare( item1:Int, item2:Int ) {
+			if(item1 == item2) return 0;
+			if(item1 < item2) return -1;
+			return 1;
+		}
+		
+		var tree = new BalancedBinarySearchTree<Int, SomeValue>( compare );
+		tree.insert( 3, new SomeValue() );
 
-	for(some_value_instance in tree) {
-		//use instance
+		for(some_value_instance in tree) {
+			//use instance
+		}
 	}
 ```
 
