@@ -16,9 +16,11 @@ More tests and classes to come.
 
 - Bag
 - Stack
-- BinarySearchTree 
+- BinarySearchTree
 - BalancedBinarySearchTree (Red/Black)
-
+  
+ ---
+ 
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
 
 ```haxe
