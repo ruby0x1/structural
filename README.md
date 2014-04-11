@@ -19,10 +19,12 @@ More tests and classes to come.
 - BinarySearchTree
 - BalancedBinarySearchTree (Red/Black)
 
+&nbsp;
 
  ---
 
- 
+&nbsp;
+
 - Red/black self balancing Binary Search Tree ([read more](http://algs4.cs.princeton.edu/33balanced/))
 
 ```haxe
