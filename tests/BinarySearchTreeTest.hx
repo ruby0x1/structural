@@ -1,5 +1,5 @@
 
-import structural.BinarySearchTree;
+import structural.BST;
 
 class BinarySearchTreeTest {
 

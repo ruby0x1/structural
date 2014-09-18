@@ -78,7 +78,7 @@ class StackTest extends Mohxa {
 
                 int_stack = null;
                 string_stack = null;
-                
+
             });
 
 

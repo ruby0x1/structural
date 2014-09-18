@@ -66,13 +66,13 @@ class BagTest extends Mohxa {
             }); //Population
 
             describe('Ordering', function(){
-                
+
                 log('ordering needs to be LIFO, so the higher numbers should be up top');
                 log('i.e ints : ' + int_bag.toArray());
                 log('i.e strings : ' + string_bag.toArray());
                 log('etc..');
 
-                
+
                 var int_passes = true;
                 var string_passes = true;
                 var custom_passes = true;
@@ -105,7 +105,7 @@ class BagTest extends Mohxa {
                 });
 
             }); //Ordering
-            
+
             after(function(){
 
                 log('cleaning up ... ');
@@ -113,7 +113,7 @@ class BagTest extends Mohxa {
                 int_bag = null;
                 string_bag = null;
                 custom_bag = null;
-                
+
             });
 
 
