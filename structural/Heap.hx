@@ -33,6 +33,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     binary tree. It can be used as an efficient priority queue.
 **/
 
+@:generic
 class Heap<T> {
 
     public var length(get, never) : Int;
@@ -72,9 +73,25 @@ class Heap<T> {
         The heap's maximum capacity.
     **/
     public function getMaxSize() : Int {
-        return size;
+        return size - 1;
     }
 
+	public function setMaxSize(_size:Int) : Int {
+		if (_size + 1 == size) return size;
+		if (_size + 1 > size) {
+			for (i in 0..._size + 1 - size) {
+				heap.push( null );
+			}
+		}
+		else {
+			heap.slice(0, _size + 1);
+			if (_size + 1 < count + 1) {
+				count = _size;
+			}
+		}
+		return size = _size + 1;
+	}
+	
     /**
         Enqueues an object. Returns false if the hash is full, otherwise true.
     **/
@@ -168,6 +185,43 @@ class Heap<T> {
 
         return false;
     }
+	
+	/**
+	    Removes a given item from the heap. The item is found with standard equality.
+	 */
+	public function remove(obj : Null<T>):Bool {
+		for (i in 1...(count + 1)) {
+			if (heap[i] == obj) {
+				var j = i;
+				heap[j] = heap[count];
+				heap[count] = null;
+				
+				var child = j << 1;
+				var tmp = heap[j];
+
+				while (child < count) {
+					if (child < count - 1) {
+						if (compare(heap[child], heap[child + 1]) < 0) child++;
+					}
+
+					var v = heap[child];
+					if (compare(tmp, v) < 0) {
+						heap[j] = v;
+						j = child;
+						child <<= 1;
+					} else {
+						break;
+					}
+				}
+
+				heap[j] = tmp;
+
+				count--;
+				return true;
+			}
+		}
+		return false;
+	}
 
     public function clear() {
         heap = new Array();
@@ -183,7 +237,6 @@ class Heap<T> {
         return count;
     }
 
-
     public function isEmpty() : Bool {
         return count == 0;
     }
@@ -197,7 +250,7 @@ class Heap<T> {
         Example: "[Heap, max_size=4]"
     **/
     function toString() : String {
-        return "[Heap, max_size=" + Std.string(size) +"]";
+        return "[Heap, max_size=" + Std.string(size - 1) +"]";
     }
 
     /**
