@@ -2,7 +2,7 @@ package structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
+    Copyright 2014-2016 Sven Bergström
 
     A unbalanced binary search tree,
     implemented based on various stack overflow answers,
@@ -15,7 +15,7 @@ package structural;
     MIT license
 */
 
-
+#if !display @:generic #end
 class BST<K,T> {
 
         /** The tree root node */
@@ -507,6 +507,7 @@ class BST<K,T> {
 
 
     /** A binary search tree node by `K` key and `T` value (type) */
+#if !display @:generic #end
 class BSTNode<K,T> {
 
         /** The node left of this node (less than) */

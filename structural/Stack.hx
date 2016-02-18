@@ -2,7 +2,7 @@ package structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
+    Copyright 2014-2016 Sven Bergström
     A simple generic linked list based Stack.
 
     Part of the structural library for haxe
@@ -11,6 +11,7 @@ package structural;
     MIT license
 */
 
+@:generic
 class Stack<T> {
 
         /** The length of this stack. If 0, the stack is empty */
@@ -26,7 +27,7 @@ class Stack<T> {
     } //new
 
         /** Push a node onto the back of the queue. node cannot be null */
-    public function push( node:T ) {
+    public function push( node:Null<T> ) {
 
         if(node == null) {
             throw "This Stack<T> class does not hold null nodes";
@@ -44,7 +45,7 @@ class Stack<T> {
     } //push
 
         /** Pop the back item off the stack. If the queue is empty, returns null */
-    public function pop() : T {
+    public function pop() : Null<T> {
 
         if(length == 0) {
             return null;
@@ -60,7 +61,7 @@ class Stack<T> {
     } //pop
 
         /** Return the top item of the stack, or null if empty */
-    public function top() : T {
+    public function top() : Null<T> {
 
         if(length == 0) {
             return null;
@@ -103,7 +104,7 @@ class Stack<T> {
 class StackNode<T> {
 
         /** the node value */
-    public var value : T;
+    public var value : Null<T>;
         /** The next node in the linked list */
     public var next : StackNode<T>;
 

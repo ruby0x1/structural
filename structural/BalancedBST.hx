@@ -2,7 +2,7 @@ package structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
+    Copyright 2014-2016 Sven Bergström
 
     A balanced binary search tree,
     implemented based on various stack overflow answers,
@@ -15,7 +15,8 @@ package structural;
     MIT License
 */
 
-
+#if !display @:generic #end
+@:allow(structural.BalancedBSTIterator)
 class BalancedBST<K,T> {
 
         /** The tree root node */
@@ -24,7 +25,6 @@ class BalancedBST<K,T> {
     public var compare : K->K->Int;
         /** Whether or not the tree is empty (i.e root == null) */
     public var empty (get, null) : Bool;
-
 
         /** Create a new balanced BST with the given comparison function */
     public function new( compare_function : K->K->Int ) {
@@ -36,24 +36,24 @@ class BalancedBST<K,T> {
 //Public API
 
         /** Return the number of nodes in the tree */
-    public function size() {
+    public inline function size() {
 
         return node_count(root);
 
     } //size
 
         /** Return the depth of the tree */
-    public function depth() {
+    public inline function depth() {
 
         return node_depth(root);
 
     } //depth
 
         /** Insert a node into the tree */
-    public function insert( _key:K, _value:T ) {
+    public inline function insert( _key:K, _value:T ) {
 
         root = node_insert( root, _key, _value );
-        root.color = black;
+        root.color = NodeColor.black;
 
     } //insert
 
@@ -124,7 +124,7 @@ class BalancedBST<K,T> {
     public function remove( _key:K ) : Bool {
 
         if( !is_red(root.left) && !is_red(root.right) ) {
-            root.color = red;
+            root.color = NodeColor.red;
         }
 
         if(!contains(_key)) {
@@ -134,7 +134,7 @@ class BalancedBST<K,T> {
         root = node_remove(root, _key);
 
         if( root != null  ) {
-            root.color = black;
+            root.color = NodeColor.black;
         }
 
         return true;
@@ -145,14 +145,16 @@ class BalancedBST<K,T> {
     public function remove_smallest() {
 
         if( !is_red(root.left) && !is_red(root.right) ) {
-            root.color = red;
+            root.color = NodeColor.red;
         }
 
         root = node_remove_smallest(root);
 
         if(root != null) {
-            root.color = black;
+            root.color = NodeColor.black;
         }
+
+        return true;
 
     } //remove_smallest
 
@@ -161,14 +163,16 @@ class BalancedBST<K,T> {
 
             // if both children of root are black, set root to red
         if (!is_red(root.left) && !is_red(root.right)) {
-            root.color = red;
+            root.color = NodeColor.red;
         }
 
         root = node_remove_largest(root);
 
         if(root != null ) {
-            root.color = black;
+            root.color = NodeColor.black;
         }
+
+        return true;
 
     } //remove_largest
 
@@ -224,11 +228,11 @@ class BalancedBST<K,T> {
 
     } //keys
 
-        /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)`   
-            :todo: This should traverse directly and implement IIterator */
-    public function iterator() : Iterator<T> {
+        /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)` */
+    public inline function iterator() {
 
-        return toArray().iterator();
+        return new BalancedBSTIterator<K,T>(this);
+        // return toArray().iterator();
 
     } //iterator
 
@@ -286,7 +290,7 @@ class BalancedBST<K,T> {
     } //node_depth
 
         /** the node count/children of a single node */
-    function node_count( _node:BalancedBSTNode<K,T> ) {
+    inline function node_count( _node:BalancedBSTNode<K,T> ) {
 
         return _node == null ? 0 : _node.nodecount;
 
@@ -297,11 +301,10 @@ class BalancedBST<K,T> {
 
         if(_node == null) {
 
-            return new BalancedBSTNode<K,T>(_key, _value, 1, red);
+            return new BalancedBSTNode<K,T>(_key, _value, 1, NodeColor.red);
 
         } //_node
 
-                //use the comparison function
             var comparison = compare(_key, _node.key);
 
             if(comparison < 0) {
@@ -337,7 +340,7 @@ class BalancedBST<K,T> {
     } //node_insert
 
         /* make sure the node count is up to date on a given node */
-    function node_update_count( _node:BalancedBSTNode<K,T> ) {
+    inline function node_update_count( _node:BalancedBSTNode<K,T> ) {
 
         _node.nodecount = node_count(_node.left) + node_count(_node.right) + 1;
 
@@ -566,13 +569,13 @@ class BalancedBST<K,T> {
 
     } //_delete
 
-    function is_red( _node:BalancedBSTNode<K,T> ) {
+    inline function is_red( _node:BalancedBSTNode<K,T> ) {
 
         if(_node == null) {
-            return black;
+            return NodeColor.black;
         }
 
-        return _node.color == red;
+        return _node.color == NodeColor.red;
 
     } //is_red
 
@@ -582,7 +585,7 @@ class BalancedBST<K,T> {
 
                 //update colors
             _n.color = _node.color;
-            _node.color = red;
+            _node.color = NodeColor.red;
                 //swap the right with left node
             _node.right = _n.left;
             _n.left = _node;
@@ -601,7 +604,7 @@ class BalancedBST<K,T> {
 
                 //update node colors
             _n.color = _node.color;
-            _node.color = red;
+            _node.color = NodeColor.red;
                 //swap the left and right node
             _node.left = _n.right;
             _n.right = _node;
@@ -622,7 +625,7 @@ class BalancedBST<K,T> {
 
     } //swap_color
 
-    function move_red_left( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
+    inline function move_red_left( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
 
         swap_color(_node);
 
@@ -634,7 +637,7 @@ class BalancedBST<K,T> {
         return _node;
     }
 
-    function move_red_right( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
+    inline function move_red_right( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
 
         swap_color(_node);
 
@@ -645,7 +648,7 @@ class BalancedBST<K,T> {
         return _node;
     }
 
-    function balance( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
+    inline function balance( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
 
         if (is_red(_node.right))    {
             _node = rotate_left(_node);
@@ -665,16 +668,94 @@ class BalancedBST<K,T> {
 
     } //balance
 
-       @:noCompletion
-    public static inline var red : Bool = true;
-       @:noCompletion
-    public static inline var black : Bool = false;
-
 } //BalancedBST
 
 
+#if !display @:generic #end
+class BalancedBSTIterator<K,T> {
+
+    var tree : BalancedBST<K,T>;
+    var current : BalancedBSTNode<K,T>;
+    var rightest : BalancedBSTNode<K,T>;
+
+    public inline function new(_tree:BalancedBST<K,T>) {
+
+        if(_tree == null) return;
+        if(_tree.root == null) return;
+
+        tree = _tree;
+        current = _min(tree.root);
+        rightest = _max(tree.root);
+
+    } //new
+
+    public inline function hasNext():Bool {
+
+        if(current == null || rightest == null) return false;
+
+        return tree.compare(current.key, rightest.key) <= 0;
+
+    } //hasNext
+
+    public inline function next() {
+        var _temp = current;
+        current = update_next();
+        return _temp.value;
+    }
+
+    inline function update_next() {
+
+        if(!hasNext()) return null;
+        if(current.right!=null) return _min(current.right);
+
+            var _next = null;
+            var _temp = tree.root;
+            while(_temp != null) {
+
+                var _comp = tree.compare(current.key, _temp.key);
+                if(_comp < 0) {
+                    _next = _temp;
+                    _temp = _temp.left;
+                } else if(_comp > 0){
+                    _temp = _temp.right;
+                } else {
+                    current = _next;
+                    break;
+                }
+
+            } //while
+
+        return _next;
+
+    } //update_next
+
+    inline function _min(_node:BalancedBSTNode<K,T>) {
+
+        while(_node.left != null) _node = _node.left;
+
+        return _node;
+
+    } //_min
+
+    inline function _max(_node:BalancedBSTNode<K,T>) {
+
+        while(_node.right != null) _node = _node.right;
+
+        return _node;
+
+    } //_max
+
+} //BalancedBSTIterator
+
+
+@:noCompletion
+private class NodeColor {
+    public static inline var red = true;
+    public static inline var black = false;
+}
 
     /** A balanced binary search tree node by `K` key and `T` value (type) */
+#if !display @:generic #end
 class BalancedBSTNode<K,T> {
 
 

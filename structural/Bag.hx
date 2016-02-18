@@ -2,7 +2,7 @@ package structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
+    Copyright 2014-2016 Sven Bergström
     A simple generic linked list based Bag.
 
     Part of the structural library for haxe
@@ -11,6 +11,7 @@ package structural;
     MIT license
 */
 
+@:generic
 class Bag<T> {
 
         /** The length of this stack. If 0, the stack is empty */
